@@ -1,7 +1,7 @@
-import { User } from "../models/user.model";
-import { ApiResponse } from "../utils/api-response";
+import { User } from "../models/user.model.js";
+import { ApiResponse } from "../utils/api-response.js";
 import jwt from 'jsonwebtoken'
-import { Blog } from "../models/blog.model";
+import { Blog } from "../models/blog.model.js";
 
 let emailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
 let passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,20}$/;
@@ -38,11 +38,10 @@ const formatDataToSend = (user,res) =>{
 
         return {
             
-            profile_img:user.profile_info.profile_img,
-            username:user.personal_info.username,
-            fullname:user.personal_info.fullname,
-            bio: user.personal_info.bio || '',
-
+            profile_img: user?.profile_info?.profile_img || "",
+            username: user?.personal_info?.username || "",
+            fullname: user?.personal_info?.fullname || "",
+            bio: user?.personal_info?.bio || "",
         }
 }
 
@@ -104,7 +103,7 @@ const registerUser = async(req,res) => {
     }
     catch(error){
         return res.status(500).json(
-            new ApiResponse(500,{message:"Error in registering the user", error})
+            new ApiResponse(500,{error:"Error in registering the user", detail: error.message})
         )
     }
 }
@@ -150,7 +149,11 @@ const loginUser =async (req,res)=> {
 }
 
 const logoutUser = async (req, res) => {
-    
+    if (!req.user) {
+        return res.status(400).json(
+            new ApiResponse(400, { error: "Unauthorized" })
+        );
+    }
     res.clearCookie('access_token', {
         httpOnly: true,
         secure: process.env.NODE_ENV === 'production',

@@ -1,5 +1,6 @@
 import jwt from 'jsonwebtoken'
-import { User } from '../models/user.model'
+import { User } from '../models/user.model.js'
+import { ApiResponse } from '../utils/api-response.js';
 
 const verifyJWT = async (req, res, next) => {
     try {
@@ -19,7 +20,7 @@ const verifyJWT = async (req, res, next) => {
             );
         }
 
-        req.user = user._id;
+        req.user = user._id.toString();
         next();
     }
     catch(error){

@@ -1,0 +1,87 @@
+
+.auth-page{
+    max-width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: row;
+    background: #fff;
+    color: #020202;
+}
+.auth-img-container{
+   width: 50%;
+   margin: 2rem;
+   margin-left: 0;
+   border-radius: 2rem;
+   padding: 0;
+   background-image: url('/auth-pic.webp');
+   opacity: .65;
+   background-size: cover;
+   background-position: center;
+}
+.auth-details-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+    width: 50%;
+    padding: 5rem 3rem;
+}
+.auth-header{
+    font-family:Gelasio, serif;;
+    margin-bottom: 1.5rem;
+    font-weight: 400;
+}
+.auth-form{
+    width: 100%;
+    max-width: 20rem;
+    display: flex;
+    flex-direction: column;
+}
+.auth-form label{
+    margin-top: .8rem;
+    font-weight: 500;
+}
+.auth-form input{
+    padding: .8rem;
+    margin-top: .4rem;
+    /* border: 1px solid #000; */
+    border: none;
+    border-radius: .5rem;
+    background-color: #f1f1f1;
+    color: black;
+}
+.auth-form input:focus{
+    background-color: #fff;
+}
+
+.forgot{
+    text-align: right;
+    margin-top: .3rem;
+   
+}
+.forgot a{
+    color: #000;
+    font-weight: 500;
+}
+
+.auth-submit-button{
+    margin-top: 1.8rem;
+    border-radius: 8px;
+    border: 1px solid transparent;
+    padding: 0.6em 1.2em;
+    font-size: 1em;
+    font-weight: 500;
+    font-family: inherit;
+    background-color:#000;
+    cursor: pointer;
+}
+.register{
+    margin-top: 2rem;
+    text-align: center;   
+    font-size: 1.1rem;
+    color: grey;
+}
+.auth-link{
+    color: #000;
+    text-decoration-line: underline;
+}

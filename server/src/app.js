@@ -4,12 +4,12 @@ import authRoutes from "./routes/auth.routes.js"
 import cors from "cors"
 const app = express();
 
-console.log("CLIENT_URI:", process.env.CLIENT_URI);
+
 
 app.use(express.json());
 app.use(cookieParser());
 app.use(cors({
-  origin: "https://localhost:5173/",
+  origin: "http://localhost:5173",
   credentials: true
 }));
 app.use("/api", authRoutes)
