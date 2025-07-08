@@ -8,6 +8,7 @@ let passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,20}$/;
 
 
 const formatDataToSend = (user,res) =>{
+    if(res){
     const access_token =  jwt.sign(
         {id:user._id},
          process.env.SECRET_ACCESS_KEY,
@@ -33,6 +34,7 @@ const formatDataToSend = (user,res) =>{
         sameSite: 'strict',
         maxAge: 7 * 24 * 60 * 60 * 1000 
         });
+    }
 
         return {
             
@@ -493,6 +495,25 @@ const likeBlog = async(req,res) =>{
         );
     }
 }
+const getCurrentUser = async(req,res) =>{
+    try {
+        const user = await User.findById(req.user);
+        if (!user) {
+            return res.status(400).json(
+                new ApiResponse(400, { error: "User not found" })
+            );
+        }
+        const userData = formatDataToSend(user);
+        return res.status(201).json(
+            new ApiResponse(201 ,{user: userData})
+        )
+    } catch (error) {
+        return res.status(500).json(
+            new ApiResponse(500,{error: "failed ot fetch user details"})
+        )
+        
+    }
+}
 export {
     registerUser ,
     loginUser,
@@ -505,6 +526,7 @@ export {
     getBlogbyId,
     getAllBlogs,
     getUserBlogs,
-    likeBlog
+    likeBlog,
+    getCurrentUser
 };
 
