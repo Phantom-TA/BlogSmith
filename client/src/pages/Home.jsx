@@ -2,6 +2,7 @@ import { useState } from "react"
 import apiClient from "../../service/apiClient";
 import { useEffect } from "react";
 import { useCallback } from "react";
+import { Link } from "react-router";
 
 const Home = () =>{
     const [blogs,setBlogs] =useState([]);
@@ -57,14 +58,15 @@ const Home = () =>{
         <div className="home-container">
             <div className="blog-section">
                 {blogs.map((blog,index)=>(
-                    <div key={blog.blog_id} className="blog-card" ref={index === blogs.length-1 ? lastbBlogRef : null}>
+                    
+                    <Link to={`blog/${blog.blog_id}`}  key={blog.blog_id} className="blog-card" ref={index === blogs.length-1 ? lastbBlogRef : null}>
                         <div className="blog-info">
                             <p className="blog-author">{blog.author?.personal_info?.username}</p>
                             <h2 className="blog-title">{blog.title}</h2>
                             <p className="blog-desc">{blog.desc}</p>
                         </div>
                         <img className="blog-banner" src={blog.banner} alt="banner" />
-                    </div>
+                    </Link>
                 ))}
             </div>
 
