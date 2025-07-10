@@ -1,0 +1,146 @@
+.navbar{
+    box-sizing: border-box;
+    min-height: 10vh;
+    display: flex;
+    position: sticky;
+    top: 0;
+    z-index: 3;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #fff;
+    padding: 12px 25px;
+    border-bottom: 1px solid #ddd;
+}
+.navbar-left{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: row;
+}
+.logo{
+    font-size: 24px;
+    font-weight: bold;
+    color: black;
+    text-decoration: none;
+    margin-right: 24px;
+}
+.search-bar {
+    display: flex;
+    align-items: center;
+    background-color: #f5f5f5;
+    border-radius: 20px;
+    padding: 6px 12px;
+    flex: 1;
+    max-width: 400px;
+    margin: 0 24px;
+}
+.search-icon {
+    color: #888;
+    margin-right: 8px;
+}
+.search-input {
+    border: none;
+    background: transparent;
+    outline: none;
+    width: 100%;
+    font-size: 14px;
+    color: #333;
+}
+.navbar-right {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+.write-btn {
+    
+    background-color: #fff;
+    color: #333;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: 500;
+    font-size: 1.1rem;
+    text-align: center;
+    
+    
+}
+.write-btn img {
+    margin-right: .2rem;
+    height: 1.1rem;
+    color: grey;
+   
+}
+.write-btn:hover{
+    color: #000;
+}
+.auth-link {
+    text-decoration: none;
+    color: black;
+    font-weight: 500;
+}
+.auth-btn{
+    padding: 8px 16px;
+    background-color: #333;
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: 500;
+    font-size: 1rem;
+    text-align: center;
+}
+.auth-btn:hover{
+    background-color: #000 ;
+}
+.profile-pic {
+    box-sizing: border-box;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    object-fit: cover;
+    cursor: pointer;
+    padding: 1px;
+    
+}
+.profile-pic-active {
+    box-sizing: border-box;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    object-fit: cover;
+    cursor: pointer;
+    border: 1px solid black;
+    padding: 1px;
+    
+}
+
+
+
+.dropdown-menu {
+    position: absolute;
+    top: 45px;
+    right: 0;
+    background-color: white;
+    box-shadow: 0 0 6px rgba(0, 0, 0, 0.15);
+    border-radius: 6px;
+    display: flex;
+    flex-direction: column;
+    width: 180px;
+    z-index: 3;
+}
+
+.dropdown-menu a,
+.dropdown-menu button {
+    padding: 10px 16px;
+    text-align: left;
+    background: none;
+    border: none;
+    font-size: 14px;
+    cursor: pointer;
+    color: black;
+}
+
+.dropdown-menu a:hover,
+.dropdown-menu button:hover {
+    background-color: #f0f0f0;
+}

@@ -3,18 +3,19 @@ import apiClient from '../../service/apiClient';
 import { useState } from 'react';
 import '../styles/auth.css'
 import { Link } from "react-router";    
+import { useAuth } from '../context/authContext';
 
 const Signup=()=>{
 
-    const [ name , setName ] = useState("");
+    const [ fullname , setFullname ] = useState("");
     const [ email, setEmail] = useState("");
     const [ password , setPassword] = useState("");
     const [ error , setError ] = useState("");
     const [ loading , setLoading ]= useState(false)
-
+     const { login } = useAuth()
     const navigate = useNavigate();
     
-
+   
     const handleSubmit = async(e) => {
         e.preventDefault();
         setLoading(true)
@@ -22,17 +23,18 @@ const Signup=()=>{
 
         try {
             console.log("Registering")
-            const data = await apiClient.signup({name , email  , password})
+            
+            const data = await apiClient.register({fullname , email  , password})
             console.log('Signup response:' ,data)
 
             if(data.success){
-                
-                navigate('/login');
+                login(data.data.user)
+                navigate('/');
 
             }
             else{
                
-                setError(data.data.message || 'Signup failed. Please try again')
+                setError(data.data.error || 'Signup failed. Please try again')
             }
         } catch (error) {
             console.error('Signup error:',error)
@@ -56,9 +58,9 @@ const Signup=()=>{
                     type="text" 
                     name="name"
                     id="name"
-                    value={name}
+                    value={fullname}
                     placeholder="Enter name"
-                    onChange={(e) => setName(e.target.value)}
+                    onChange={(e) => setFullname(e.target.value)}
                     required
                     />
              

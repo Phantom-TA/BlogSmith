@@ -44,6 +44,7 @@ class ApiClient {
     }
 
     async register(data) {
+            
         return this.customFetch('/register', {
             method: 'POST',
             body: JSON.stringify(data)
@@ -74,6 +75,7 @@ class ApiClient {
     }
 
     async createBlog(data) {
+     
         return this.customFetch('/blog/create',{
             method: 'POST',
             body: JSON.stringify(data)

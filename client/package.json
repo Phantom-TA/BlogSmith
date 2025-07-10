@@ -10,9 +10,11 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@tiptap/extension-image": "^2.25.0",
+    "@tiptap/react": "^2.25.0",
+    "@tiptap/starter-kit": "^2.25.0",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
-    "react-quill": "^2.0.0",
     "react-router": "^7.6.3"
   },
   "devDependencies": {

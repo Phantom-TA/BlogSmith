@@ -2,6 +2,7 @@ import { useState } from "react";
 import apiClient from "../../service/apiClient";
 import {Link, useNavigate} from 'react-router'
 import '../styles/auth.css'
+import { useAuth } from "../context/authContext";
 
 const Login =()=> {
     const [ email, setEmail] = useState("");
@@ -9,6 +10,7 @@ const Login =()=> {
     const [ error , setError ] = useState("");
     const [ loading , setLoading ]= useState(false)
     const navigate = useNavigate();
+    const { login } = useAuth();
 
     const handleSubmit = async(e) => {
         e.preventDefault();
@@ -20,7 +22,7 @@ const Login =()=> {
             console.log('Login response:' ,data)
 
             if(data.success){
-
+                login(data.data.user)
                 navigate('/');
             }
             else{
@@ -80,7 +82,7 @@ const Login =()=> {
                     
                 </button>
                 <div className="register">
-                Don’t have an account?<Link to="/signup" className="auth-link">Register</Link> 
+                Dont have an account?<Link to="/signup" className="auth-link">Register</Link> 
                 </div>
             </form>
           { error && <div>{error}</div> }

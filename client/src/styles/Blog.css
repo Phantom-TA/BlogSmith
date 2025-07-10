@@ -1,0 +1,36 @@
+.blog-detail-container {
+  max-width: 800px;
+  margin: 40px auto;
+  padding: 0 20px;
+  color: #000;
+}
+
+.blog-detail-title {
+  font-size: 32px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  
+}
+
+.blog-detail-author {
+  color: #666;
+  margin-bottom: 20px;
+}
+.blog-detail-desc {
+  font-size: 22px;
+  font-weight: 400;
+  margin-bottom: 30px;
+  color: #666;
+}
+.blog-detail-banner {
+  width: 100%;
+  max-height: 400px;
+  object-fit: cover;
+  margin-bottom: 20px;
+}
+
+.blog-detail-content  {
+  font-size: 18px;
+  line-height: 1.6;
+  margin-bottom: 20px;
+}

@@ -1,0 +1,103 @@
+.profile-container {
+  padding: 40px 20px;
+  max-width: 900px;
+  margin: auto;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  color: #000  ;
+}
+
+.user-info {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.profile-img {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #ccc;
+}
+
+.user-info h2 {
+  margin-top: 10px;
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.user-info p {
+  margin: 4px 0;
+  color: #555;
+}
+
+.bio {
+  margin-top: 10px;
+  font-style: italic;
+  color: #666;
+}
+
+.user-blogs {
+  margin-top: 20px;
+}
+
+.user-blogs h2 {
+  font-size: 1.3rem;
+  margin-bottom: 15px;
+}
+
+.user-blog-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 15px;
+  margin-bottom: 20px;
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 15px;
+}
+
+.user-blog-details {
+  flex: 1;
+}
+
+.user-blog-details h4 {
+  margin: 0 0 5px 0;
+  font-size: 1.1rem;
+}
+
+.user-blog-details p {
+  color: #333;
+  font-size: 0.95rem;
+}
+
+.user-blog-buttons {
+  margin-top: 10px;
+}
+
+.edit-btn,
+.delete-btn {
+  margin-right: 10px;
+  padding: 6px 12px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: background-color 0.2s ease;
+  text-decoration: none;
+}
+
+.edit-btn {
+  background-color: #007bff;
+  color: white;
+}
+
+.edit-btn:hover {
+  background-color: #0062cc;
+}
+
+.delete-btn {
+  background-color: #dc3545;
+  color: white;
+}
+
+.delete-btn:hover {
+  background-color: #c82333;
+}
