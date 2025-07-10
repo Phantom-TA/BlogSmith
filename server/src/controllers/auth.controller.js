@@ -47,9 +47,9 @@ const formatDataToSend = (user,res) =>{
 
 const registerUser = async(req,res) => {
     console.log("started registration")
-    const { fullname , email , password ,username } = req.body;
+    const { fullname , email , password  } = req.body;
 
-    if(!fullname || !email || !password || !username )
+    if(!fullname || !email || !password  )
     {
         return res.status(400).json(
             new ApiResponse(400,{error:"Please fill all the required fields"})
@@ -76,12 +76,7 @@ const registerUser = async(req,res) => {
             return res.status(400).json(
                 new ApiResponse(400,{error:"User already exists"})
         )
-        const existingUsername = await User.findOne({"personal_info.username" : username})
-        if(existingUsername)
-            return res.status(400).json(
-                new ApiResponse(400,{error:"Username already exists"})
-        )
-        
+        let username = email.toLowerCase().split('@')[0];
         const user = await User.create({
             personal_info:{
             fullname , 
@@ -98,7 +93,7 @@ const registerUser = async(req,res) => {
         await user.save();
         
         res.status(201).json(
-            new ApiResponse(201,{message:"User registered successfully" , user_data: formatDataToSend(user,res) })
+            new ApiResponse(201,{message:"User registered successfully" , user: formatDataToSend(user,res) })
         )
     }
     catch(error){
@@ -116,22 +111,26 @@ const loginUser =async (req,res)=> {
      )
     try {
         
-    
+        
         const user = await User.findOne({"personal_info.email" : email})
+       
         if(!user){
            return res.status(400).json(
            new ApiResponse(400,{error: "Email not found "})
         )
         }
+      
         if(!user.google_auth){
+              
            const isPasswordCorrect = await user.isPasswordCorrect(password);
+           
            if(!isPasswordCorrect)
              return res.status(400).json(
              new ApiResponse(400,{error:"Incorrect password"})
              )
             else{
                 return  res.status(201).json(
-                    new ApiResponse(201,{message:"Login Successful" , user_data:formatDataToSend(user,res)})
+                    new ApiResponse(201,{message:"Login Successful" , user:formatDataToSend(user,res)})
                 )
             }
         }
@@ -255,7 +254,7 @@ const changePassword =async (req,res) =>{
 
 const createBlog = async( req,res) =>{
     const authorId = req.user;
-    const { title , desc , banner , tags , content , draft , id :blog_id } = req.body;
+    const { title , desc , banner  , content , draft } = req.body;
     if(!title?.trim())
     {
         return res.status(400).json(
@@ -280,26 +279,23 @@ const createBlog = async( req,res) =>{
                 new ApiResponse(400,{error:"You must provide some content to your blog"})
             )
         }
-        if(!tags?.length || tags.length > 10) {
-            return res.status(400).json(
-                new ApiResponse( 400,{error: "Provide tags in order to publish the blog, Maximum 10"})
-            )
-        }
+       
     }
-    if (tags?.length)
-        tags = tags.map(tag => tag.toLowerCase());
+    
 
     try {
         const newBlog = await Blog.create({
-            blog_id,
+          
             title , 
             desc,
             banner,
-            tags,
             content,
             author: authorId,
             draft
         })
+        await newBlog.save();
+        newBlog.blog_id = newBlog._id;
+        await newBlog.save();
         res.status(201).json(
             new ApiResponse(201, { message: draft ? "Draft saved" : "Blog published", blog: newBlog })
         );
@@ -313,7 +309,7 @@ const createBlog = async( req,res) =>{
 }
 
 const editBlog =async(req,res) =>{
-    const { title , desc , banner , tags , content , draft } =req.body;
+    const { title , desc , banner  , content , draft } =req.body;
     const blog_id = req.params.blogId;
      if(!title?.trim())
     {
@@ -339,14 +335,9 @@ const editBlog =async(req,res) =>{
                 new ApiResponse(400,{error:"You must provide some content to your blog"})
             )
         }
-        if(!tags?.length || tags.length > 10) {
-            return res.status(400).json(
-                new ApiResponse( 400,{error: "Provide tags in order to publish the blog, Maximum 10"})
-            )
-        }
+        
     }
-    if (tags?.length)
-        tags = tags.map(tag => tag.toLowerCase());
+   
     try {
         const blog = await Blog.findOne({blog_id})
         if(!blog)
@@ -362,7 +353,6 @@ const editBlog =async(req,res) =>{
         blog.title = title;
         blog.desc = desc;
         blog.banner = banner;
-        blog.tags = tags;
         blog.content = content;
         blog.draft = draft;
 

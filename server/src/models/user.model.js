@@ -59,15 +59,18 @@ const userSchema = new mongoose.Schema({
     }
 })
 
-export const User = mongoose.model('User', userSchema);
+
 
 userSchema.pre("save",async function(next){
-     if(!this.isModified("password")) 
+     if(!this.isModified("personal_info.password")) 
         return next();
-    this.password = await bcrypt.hash(this.password, 10);
+    this.personal_info.password = await bcrypt.hash(this.personal_info.password, 10);
     next();
 })
 
 userSchema.methods.isPasswordCorrect = async function(password) {
-    return await bcrypt.compare(password, this.password);
+    
+    return await bcrypt.compare(password, this.personal_info.password);
 }
+
+export const User = mongoose.model('User', userSchema);

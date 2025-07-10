@@ -3,8 +3,6 @@ import mongoose, { Schema } from "mongoose";
 const blogSchema = new mongoose.Schema({
         blog_id:{
             type:String,
-            required:true,
-            unique:true
         },
         title:{
             type:String,
@@ -17,11 +15,8 @@ const blogSchema = new mongoose.Schema({
             type:String,
             maxlength:150
         },
-        tags:{
-            type:[String]
-        },
         content:{
-            type:[]
+            type: String,
         },
         author:{
             type:  Schema.Types.ObjectId ,
