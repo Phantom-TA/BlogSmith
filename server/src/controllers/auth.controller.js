@@ -461,33 +461,61 @@ const getUserBlogs = async(req,res) =>{
     }
 }
 
-const likeBlog = async(req,res) =>{
-    const blog_id = req.params.blogId;
-    try{
-        const blog = await Blog.findOne({blog_id});
-         if (!blog) {
-            return res.status(404).json(new ApiResponse(404, { error: "Blog not found" }));
-        }
-        const isAlreadyLiked = blog.liked_by.includes(req.user);
-        if(isAlreadyLiked){
-            blog.liked_by.pull(req.user);
-            blog.total_likes-=1
-        }
-        else{
-            blog.liked_by.push(req.user);
-            blog.total_likes+=1;
-        }
-        await blog.save();
-        return res.status(201).json(
-            new ApiResponse(201,{ message: isAlreadyLiked ? "Blog unliked" : "Blog liked", total_likes: blog.total_likes})
-        )
+
+const likeBlog = async (req, res) => {
+  const blogId = req.params.blogId;
+
+  try {
+    const blog = await Blog.findById(blogId);
+    if (!blog) {
+      return res.status(404).json(new ApiResponse(404, { error: "Blog not found" }));
     }
-    catch(error){
-        return res.status(500).json(
-            new ApiResponse(500, { error: "Failed like operation" })
-        );
+
+    const isAlreadyLiked = blog.liked_by.includes(req.user);
+
+    if (isAlreadyLiked) {
+      blog.liked_by.pull(req.user);
+      blog.total_likes -= 1;
+    } else {
+      blog.liked_by.push(req.user);
+      blog.total_likes += 1;
     }
-}
+
+    await blog.save();
+
+    return res.status(201).json(
+      new ApiResponse(201, {
+        message: isAlreadyLiked ? "Blog unliked" : "Blog liked",
+        total_likes: blog.total_likes
+      })
+    );
+  } catch (error) {
+    return res.status(500).json(
+      new ApiResponse(500, { error: "Failed like operation", detail: error.message })
+    );
+  }
+};
+
+
+const getLikedBlogs = async (req, res) => {
+  try {
+    const blogs = await Blog.find({ liked_by: req.user }).select("_id total_likes");
+    const likedBlogIds = blogs.map((b) => b._id.toString());  
+    const blogLikes = {};
+    blogs.forEach((b) => {
+      blogLikes[b._id.toString()] = b.total_likes;
+    });
+
+    return res
+      .status(200)
+      .json(new ApiResponse(200, { likedBlogIds, blogLikes }));
+  } catch (err) {
+    return res
+      .status(500)
+      .json(new ApiResponse(500, { error: "Failed to fetch liked blogs" }));
+  }
+};
+
 const getCurrentUser = async(req,res) =>{
     try {
         const user = await User.findById(req.user);
@@ -520,6 +548,7 @@ export {
     getAllBlogs,
     getUserBlogs,
     likeBlog,
+    getLikedBlogs,
     getCurrentUser
 };
 

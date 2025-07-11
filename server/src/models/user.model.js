@@ -4,7 +4,7 @@ const userSchema = new mongoose.Schema({
     personal_info:{
         fullname : {
             type:String,
-            lowercase:true,
+            
             required:true,
             
         },
