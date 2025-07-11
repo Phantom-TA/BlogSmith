@@ -85,19 +85,29 @@
 }
 
 .edit-btn {
-  background-color: #007bff;
-  color: white;
+  background-color: white;
+  color: black;
+  border: 1px solid black;
 }
 
 .edit-btn:hover {
   background-color: #0062cc;
+  color: #fff;
 }
 
 .delete-btn {
-  background-color: #dc3545;
-  color: white;
+  background-color: #fff;
+  color: #000;
+  border: 1px solid black;
 }
 
 .delete-btn:hover {
   background-color: #c82333;
+  color: #fff;
+}
+
+.user-blogs-header{
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    padding-bottom: 30px;
+    border-bottom: 1px solid #ddd;
 }

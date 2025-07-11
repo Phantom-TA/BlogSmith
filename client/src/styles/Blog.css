@@ -34,3 +34,11 @@
   line-height: 1.6;
   margin-bottom: 20px;
 }
+.blog-detail-like {
+  margin-left: 20px;
+  display: inline-block;
+}
+
+.trend-like-button {
+  margin-top: 5px;
+}

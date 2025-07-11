@@ -4,6 +4,8 @@ import { useState } from 'react';
 import '../styles/auth.css'
 import { Link } from "react-router";    
 import { useAuth } from '../context/authContext';
+import logo from '/logo.png'
+import google from '/google.png'
 
 const Signup=()=>{
 
@@ -49,6 +51,9 @@ const Signup=()=>{
         <div className="auth-page">
             
             <div className="auth-details-container">
+                <Link to="/" className="logo">
+                <img src={logo} alt="logo"  className="logo-image"/>
+                </Link>
             <h1 className="auth-header">Create account</h1>
                
             <form onSubmit={handleSubmit} className="auth-form">
@@ -97,8 +102,14 @@ const Signup=()=>{
                     {loading ? 'Signup...' : 'Signup'}
                     
                 </button>
-                  <div className="register">
-                Already have an account? <Link to="/login" className='auth-link'>Login</Link>
+                 <div class="or-divider">
+                    <span>OR</span>
+                </div>
+                
+                <button className="google-auth"><img src={google} alt="google-icon" />Continue with Google</button>
+                                
+                <div className="register">
+                Already have an account? <Link to="/login" className='auth-links'>Login</Link>
                 </div>
 
             </form>

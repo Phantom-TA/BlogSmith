@@ -3,6 +3,8 @@ import apiClient from "../../service/apiClient";
 import {Link, useNavigate} from 'react-router'
 import '../styles/auth.css'
 import { useAuth } from "../context/authContext";
+import logo from '/logo.png'
+import google from '/google.png'
 
 const Login =()=> {
     const [ email, setEmail] = useState("");
@@ -11,6 +13,7 @@ const Login =()=> {
     const [ loading , setLoading ]= useState(false)
     const navigate = useNavigate();
     const { login } = useAuth();
+
 
     const handleSubmit = async(e) => {
         e.preventDefault();
@@ -43,6 +46,9 @@ const Login =()=> {
         <div className="auth-page">
            
             <div className="auth-details-container">
+                <Link to="/" className="logo">
+                    <img src={logo} alt="logo"  className="logo-image"/>
+                </Link>
             <h1 className="auth-header">Welcome Back!</h1>
               
             <form onSubmit={handleSubmit} className="auth-form">
@@ -81,8 +87,13 @@ const Login =()=> {
                     {loading ? 'Login...' : 'Login'}
                     
                 </button>
+                <div class="or-divider">
+                    <span>OR</span>
+                </div>
+
+                <button className="google-auth"><img src={google} alt="google-icon" />Continue with Google</button>
                 <div className="register">
-                Dont have an account?<Link to="/signup" className="auth-link">Register</Link> 
+                Dont have an account?<Link to="/signup" className="auth-links">Register</Link> 
                 </div>
             </form>
           { error && <div>{error}</div> }
@@ -93,3 +104,10 @@ const Login =()=> {
     )
 }
 export default Login
+
+{/* <button className="btn-dark flex items-center justify-center gap-4 w-[90%] center"
+                    onClick={handleGoogleAuth}
+                >
+                    <img src={googleIcon} className="w-5" />
+                    Continue with Google
+                </button> */}

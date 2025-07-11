@@ -114,6 +114,11 @@ class ApiClient {
             method:'PUT'
         })
     }
+    async likedBlogs(){
+         return this.customFetch('/liked-blogs',{
+            method:'GET'
+        })
+    }
     async getCurrentUser() {
         return this.customFetch('/me', {
             method: 'GET'

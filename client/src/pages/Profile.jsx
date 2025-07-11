@@ -4,6 +4,7 @@ import { useEffect } from "react";
 import { Link } from "react-router";
 import "../styles/Profile.css"
 import { useAuth } from "../context/authContext";
+import LikeButton from "../components/LikeButton";
 const Profile =()=>{
     const {user} = useAuth();
     const [blogs,setBlogs] =useState([]);
@@ -12,7 +13,6 @@ const Profile =()=>{
         try {
             const userRes = await apiClient.getCurrentUser();
             const blogRes = await apiClient.getUserBlogs();
-            // setUser(userRes.data.user)
             setBlogs(blogRes.data.blogs)
 
         } catch (error) {
@@ -42,11 +42,12 @@ const Profile =()=>{
                 <img src={"/auth-pic.webp" || user.profile_img} alt="profile-img" className="profile-img"  />
                 <h2>{user.fullname}</h2>
                 <p>@{user.username}</p>
+                
                 {user.bio && <p className="bio">{user.bio}</p>}
             </div>
 
             <div className="user-blogs">
-                <h2>Your Blogs</h2>
+                <h2 className="user-blogs-header">Your Blogs</h2>
                 {blogs.length === 0 ? <p>You haven't written any blog yet.</p>
                  : (
                     blogs.map((blog)=>(
@@ -54,6 +55,9 @@ const Profile =()=>{
                             <div className="user-blog-details">
                                 <h4>{blog.title}</h4>
                                 <p>{blog.desc}</p>
+                                 <span className="blog-detail-profile-like">
+          <LikeButton blogId={blog._id} initialLikes={blog.total_likes} />
+        </span>
                                 <div className="user-blog-buttons">
                                     <Link to={`/blog/${blog.blog_id}/edit`} className="edit-btn">
                                     Edit

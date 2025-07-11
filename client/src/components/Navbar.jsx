@@ -7,6 +7,7 @@ import { useEffect } from "react";
 import '../styles/Navbar.css'
 import Search from '/search.png'
 import Write from '/write.png'
+import logo from '/logo.png'
 
 const Navbar =() =>{
     const {user,logout} = useAuth();
@@ -41,7 +42,10 @@ const Navbar =() =>{
         <div className="navbar">
            
             <div className="navbar-left">
-                <Link to="/" className="logo">BlogSmith</Link>
+                <Link to="/" className="logo">
+                <img src={logo} alt="logo"  className="logo-image"/>
+                <span className="logo-header">BlogSmith</span>
+                </Link>
                 <div className="search-bar">
                 <img src={Search} alt="search-icon" className="search-icon"/>
                 <input type="text" placeholder="Search" className="search-input"/>

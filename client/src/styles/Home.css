@@ -17,6 +17,9 @@
   padding: 20px;
   
 }
+.blog-section-header{
+  font-family:  Georgia, 'Times New Roman', Times, serif;
+}
 .blog-card {
   display: flex;
   justify-content: space-between;
@@ -46,10 +49,11 @@
 }
 
 .blog-banner {
-  width: 180px;
-  height: 120px;
+  width: 200px;
+  height: 140px;
   object-fit: cover;
   margin-left: 20px;
+  margin-top: 20px;
 }
 
 .trending-section {
@@ -58,7 +62,9 @@
   top: 80px;
   height: fit-content;
 }
-
+.trending-section-header{
+  font-family:  Georgia, 'Times New Roman', Times, serif;
+}
 .trending-section h3 {
   margin-bottom: 15px;
 }
@@ -68,6 +74,7 @@
   align-items: flex-start;
   gap: 10px;
   margin-bottom: 15px;
+ 
 }
 
 .trend-rank {
