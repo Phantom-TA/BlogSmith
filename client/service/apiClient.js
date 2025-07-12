@@ -124,6 +124,11 @@ class ApiClient {
             method: 'GET'
         });
     }
+    async getTrendingBlogs(){
+        return this.customFetch('/trending',{
+            method:'GET'
+        })
+    }
 
 }
 const apiClient = new ApiClient();

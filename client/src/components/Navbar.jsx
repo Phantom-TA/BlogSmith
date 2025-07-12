@@ -29,6 +29,7 @@ const Navbar =() =>{
     }
 
     useEffect(() => {
+        
         const handleClickOutside = (e) => {
             if (dropdownRef.current && !dropdownRef.current.contains(e.target)) {
                 setDropdownOpen(false);
@@ -61,7 +62,7 @@ const Navbar =() =>{
                     </>
                 ):(
                 <div className="profile-section" ref={dropdownRef}>
-                    <img src={user.profile_img || "/auth-pic.webp" } alt="profile-pic" className={dropdownOpen ? "profile-pic-active " : "profile-pic"} onClick={()=>setDropdownOpen(!dropdownOpen)} />
+                    <img src={user.profile_img  } alt="profile-pic" className={dropdownOpen ? "profile-pic-active " : "profile-pic"} onClick={()=>setDropdownOpen(!dropdownOpen)} />
                     {dropdownOpen && (
                         <div className="dropdown-menu">
                             <Link to="/profile">Profile</Link>

@@ -51,8 +51,8 @@ const Home = () => {
 
   const fetchTrendingBlogs = async () => {
     try {
-      const res = await apiClient.getAllBlogs(1);
-      setTrendingBlogs(res.data.blogs.slice(0, 5));
+      const res = await apiClient.getTrendingBlogs();
+      setTrendingBlogs(res.data.blogs);
     } catch (err) {
       console.error("Failed to fetch trending blogs", err);
     }

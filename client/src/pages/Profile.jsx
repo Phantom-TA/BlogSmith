@@ -39,7 +39,7 @@ const Profile =()=>{
     return (
         <div className="profile-container">
             <div className="user-info">
-                <img src={"/auth-pic.webp" || user.profile_img} alt="profile-img" className="profile-img"  />
+                <img src={  user.profile_img} alt="profile-img" className="profile-img"  />
                 <h2>{user.fullname}</h2>
                 <p>@{user.username}</p>
                 
