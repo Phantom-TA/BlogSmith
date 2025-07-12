@@ -38,7 +38,7 @@ const formatDataToSend = (user,res) =>{
 
         return {
             
-            profile_img: user?.profile_info?.profile_img || "",
+            profile_img: user?.personal_info?.profile_img ,
             username: user?.personal_info?.username || "",
             fullname: user?.personal_info?.fullname || "",
             bio: user?.personal_info?.bio || "",
@@ -535,6 +535,26 @@ const getCurrentUser = async(req,res) =>{
         
     }
 }
+const getTrendingBlogs = async (req, res) => {
+  try {
+    const trendingBlogs = await Blog.find({ draft: false })
+      .sort({ total_likes: -1 })
+      .limit(5)
+      .populate({
+        path: 'author',
+        select: 'personal_info.username personal_info.fullname personal_info.profile_img',
+      });
+
+    return res.status(200).json(
+      new ApiResponse(200, { blogs: trendingBlogs })
+    );
+  } catch (error) {
+    return res.status(500).json(
+      new ApiResponse(500, { error: "Failed to fetch trending blogs", detail: error.message })
+    );
+  }
+};
+
 export {
     registerUser ,
     loginUser,
@@ -549,6 +569,7 @@ export {
     getUserBlogs,
     likeBlog,
     getLikedBlogs,
-    getCurrentUser
+    getCurrentUser,
+    getTrendingBlogs
 };
 
