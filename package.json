@@ -4,7 +4,7 @@
   "description": "Unified build for BlogSmith",
   "type": "module",
   "scripts": {
-    "build": "cd client && npm install && npm run build",
+    "build": "cd client && npm install --include=dev && npm run build",
     "install-app": "npm install && cd client && npm install && cd ../server && npm install"
   },
   "dependencies": {
