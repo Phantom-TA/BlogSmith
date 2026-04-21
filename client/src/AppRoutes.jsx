@@ -1,11 +1,11 @@
 
 import './App.css'
-import Login from './pages/login'
+import Login from './pages/Login'
 import { Routes , Route, useLocation } from "react-router"
 import Home from './pages/Home'
 import Signup from './pages/Signup'
 import Blog from './pages/Blog'
-import Editor from './pages/editor'
+import Editor from './pages/Editor'
 import Profile from './pages/Profile'
 import Navbar from './components/Navbar'
 
