@@ -90,8 +90,6 @@ const registerUser = async(req,res) => {
             return res.status(400).json(
                 new ApiResponse(400,{error:"User not registered"})
         )
-        await user.save();
-        
         res.status(201).json(
             new ApiResponse(201,{message:"User registered successfully" , user: formatDataToSend(user,res) })
         )
@@ -284,8 +282,7 @@ const createBlog = async( req,res) =>{
     
 
     try {
-        const newBlog = await Blog.create({
-          
+        const newBlog = new Blog({
             title , 
             desc,
             banner,
@@ -293,9 +290,9 @@ const createBlog = async( req,res) =>{
             author: authorId,
             draft
         })
-        await newBlog.save();
         newBlog.blog_id = newBlog._id;
         await newBlog.save();
+
         res.status(201).json(
             new ApiResponse(201, { message: draft ? "Draft saved" : "Blog published", blog: newBlog })
         );
