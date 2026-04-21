@@ -1,7 +1,7 @@
 import { useEditor, EditorContent } from '@tiptap/react'
 import StarterKit from '@tiptap/starter-kit'
 import Image from '@tiptap/extension-image'
-import '../styles/TiptapEditor.css'
+import '../styles/TipTapEditor.css'
 
 const TiptapEditor = ({ content, setContent }) => {
   const editor = useEditor({
