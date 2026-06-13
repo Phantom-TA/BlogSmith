@@ -1,6 +1,6 @@
 # 📝 BlogSmith
 
-BlogSmith is a full-stack blogging platform built with modern web technologies. It supports secure user authentication, image-rich blogging, and seamless user experiences. Users can write, update, like, and delete posts, all while enjoying persistent sessions and secure access.
+BlogSmith is a full-stack blogging platform built with modern web technologies.It supports secure user authentication, image-rich blogging, and seamless user experiences. Users can write, update, like, and delete posts, all while enjoying persistent sessions and secure access.
 
 ## Deployment Link 🔗
 - https://blog-smith.vercel.app/
